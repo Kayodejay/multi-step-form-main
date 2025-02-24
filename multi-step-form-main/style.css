@@ -1,0 +1,429 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: ubuntu;
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+    background: rgb(210, 234, 248);
+    color: hsl(213, 96%, 18%);
+}
+
+.wrap {
+    display: flex;
+    border-radius: .6rem;
+    margin-bottom: 3rem;
+    padding: .6rem;
+    background: #f4f4f4;
+    height: 26rem;
+    width: 42rem;
+}
+
+/* sidebar */
+
+.step-wrap {
+    background-image: url("./assets/images/bg-sidebar-desktop.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: .4rem;
+    padding: 1.6rem 1.2rem;
+    min-width: 12rem;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.steps .circle {
+    display: grid;
+    place-content: center;
+    border: 1px solid #e0ddff;
+    color: #e0ddff;
+    font-weight: 500;
+    font-size: small;
+    border-radius: 50%;
+    margin-right: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.circle.active {
+    border: 1px solid #e0ddff;
+    color: hsl(213, 96%, 18%);
+    background: hsl(206, 94%, 87%);
+    border-radius: 50%;
+}
+
+.steps .step-text h5{
+    font-weight: 400;
+    font-size: 4px;
+    text-transform: uppercase;
+    color: #bebebe;
+    margin-bottom: .2rem;
+}
+
+.steps .step-text h3 {
+    font-weight: 700;
+    font-size: small;
+    text-transform: uppercase;
+    color: #e0ddff;
+}
+
+#multistepForm {
+    margin-inline: auto;
+}
+
+.step-info {
+    width: 100%;
+    padding: 2rem 2rem 0 2rem;
+    display: grid;
+    place-content: center;
+}
+
+/* step 1 */
+
+.info1 {
+    display: none;
+}
+
+.step-info .heading h2 {
+    margin-bottom: .4rem;
+}
+
+.step-info .heading p {
+    font-size: small;
+    margin-bottom: 1.5rem;
+    color: hsl(231, 11%, 63%);
+}
+
+.input-box .input {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .4rem;
+}
+
+.input-box .input label {
+    font-weight: 500;
+    font-size: small
+}
+
+.input-box input {
+    width: 100%;
+    padding: .6rem .4rem;
+    outline: 1px solid hsl(229, 24%, 87%);
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    background: inherit;
+    font-family: inherit;
+}
+
+.input-box input:hover {
+    outline-color: hsl(243, 100%, 62%);
+}
+
+::placeholder {
+    color: hsl(231, 11%, 63%);
+}
+
+.input .error-message {
+    display: none;
+    font-size: smaller;
+    color: hsl(354, 84%, 57%);
+}
+
+/* step 2 */
+
+.info2 {
+    display: none;
+}
+
+.info2 .select-plan {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.plans {
+    border: 1px solid hsl(231, 11%, 63%);
+    border-radius: 5px;
+    padding: .8rem;
+    cursor: pointer;
+}
+
+.plans:has(> .checked:checked) {
+    border: 2px solid hsl(243, 100%, 62%);
+}
+
+.plans img {
+    margin: 0 50px 30px 0;
+}
+
+.year-plans .plans img {
+    margin: 0 50px 15px 0;
+}
+
+.plans h4 {
+    font-size: small;
+    font-weight: 500;
+}
+
+.plans p {
+    font-size: smaller;
+    color: hsl(231, 11%, 63%);
+}
+
+.plans input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox']:checked + .plans:checked {
+    border-color: hsl(243, 100%, 62%);
+}
+
+.bill-plan {
+    background-color: hsl(229, 24%, 87%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 23px;
+    margin-bottom: 1.5rem;
+    padding-block: .5rem;
+    border-radius: 5px;
+    font-size: small;
+}
+
+.plan-slider {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: hsl(213, 96%, 18%);
+        border-radius: 10px;
+        transition: 0.3s ease;
+
+        &::before {
+            position: absolute;
+            content: '';
+            width: 12px;
+            height: 12px;
+            bottom: 4px;
+            left: 4px;
+            background-color: hsl(0, 0%, 100%);
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+}
+
+/* step 3 */
+
+.info3 {
+    display: none;
+}
+
+.info3 .add-ons {
+    display: grid;
+    gap: .6rem;
+}
+
+.info3 .add-ons .add-on {
+    display: flex;
+    align-items: center;
+    border: 1px solid hsl(229, 24%, 87%);
+    border-radius: 5px;
+    padding: .8rem;
+}
+
+.info3 .add-ons .add-on:hover {
+    border-color: hsl(228, 100%, 84%);
+}
+
+.info3 .add-ons .add-on .add-on-id {
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+.add-on-id label {
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.add-on-id p {
+    font-size: small;
+    color: hsl(231, 11%, 63%);
+}
+
+.add-on .colored {
+    font-size: small;
+    color: hsl(243, 100%, 62%);
+}
+
+/* step 4 */
+
+.info4 {
+    display: none;
+}
+
+.info4 .summary-wrap {
+    background: hsl(230, 29%, 92%);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.summary-wrap .plan-summary {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(231, 11%, 63%);
+}
+
+.plan-summary .plan-name {
+    font-size: small;
+    padding-bottom: .8rem;
+}
+
+.plan-name h4 {
+    padding-bottom: .3rem;
+}
+
+.plan-name .change-plan {
+    color: hsl(231, 11%, 63%);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.addOn-summary {
+    padding-top: .6rem;
+}
+
+.addOn-summary .addOn-flex {
+    display: flex;
+    justify-content: space-between;
+    padding-block: .4rem;
+    font-size: small;
+}
+
+.addOn-flex p:first-child {
+    color: hsl(231, 9%, 53%);
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    font-size: small;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.total .colored {
+    color: hsl(243, 100%, 62%);
+}
+
+/* confirmation */
+
+.confirmation {
+    display: none;
+    place-content: center;
+    padding: 2rem;
+}
+
+.confirmation .confirmation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.confirmation .confirmation-image {
+    margin-bottom: .5rem;
+}
+
+.confirmation .confirmation-image img {
+    width: 100%;
+}
+
+.confirmation .confirmation-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: hsl(213, 96%, 18%);
+}
+
+.confirmation .confirmation-text {
+    color: hsl(231, 9%, 58%);
+    text-align: center;
+    line-height: 160%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    border: none;
+    padding: .6rem 1rem;
+    border-radius: 5px;
+    background: hsl(213, 96%, 18%);
+    font-family: inherit;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.buttons .go-back-btn {
+    border: none;
+    background: inherit;
+    font-family: inherit;
+    font-size: medium;
+    font-weight: 500;
+    color: hsla(213, 96%, 18%, 0.781);
+    cursor: pointer;
+}
+
+.buttons .go-back-btn:hover {
+    color: hsl(213, 96%, 18%);
+}
+
+.buttons .confirm {
+    display: none;
+    background-color: hsl(243, 100%, 62%);
+    font-weight: 500;
+}
+
+.buttons .confirm:hover {
+    background-color: hsl(243, 100%, 70%);
+}
+
+
