@@ -15,12 +15,14 @@ let showStep = (stepNb) => {
   progression[stepNb].style.display = "grid";
   sideBar[stepNb].classList.add("active");
   confirmBtn.style.display = "none";
+  confirmBtn.disabled = true;
 
   prevBtn.style.visibility = stepNb === 0 ? "hidden" : "visible";
 
   if (stepNb === progression.length - 1) {
     nextBtn.style.display = "none";
     confirmBtn.style.display = "block";
+    confirmBtn.disabled = false;
     console.log("does it work");
   } else {
     nextBtn.style.display = "block";
@@ -143,21 +145,17 @@ options.forEach((option, i) => {
   option.addEventListener("change", (event) => {
     if (event.target.checked) {
       optionCase[i] = true;
-      document
-        .querySelector(".colored" + i)
-        .forEach((el) => (el.style.display = "flex"));
+      // document.querySelector(".colored" + i).forEach((el) => (el.style.display = "flex"));
       priceDetails[i + 1] = checkPrice(checkedPlanNb, i);
     } else {
       optionCase[i] = false;
-      document
-        .querySelector(".colored" + i)
-        .forEach((el) => (el.style.display = "none"));
+      // document.querySelector(".colored" + i).forEach((el) => (el.style.display = "none"));
       priceDetails[i + 1] = 0;
       priceShow();
     }
     optionCase.includes(true)
-      ? (document.querySelector(".add-on").style.display = "block")
-      : (document.querySelector(".add-on").style.display = "none");
+      ? (document.querySelector(".colored" + i).forEach((el) => (el.style.display = "block")))
+      : (document.querySelector(".colored" + i).forEach((el) => (el.style.display = "none")));
   });
 });
 
@@ -167,12 +165,10 @@ function selectionName(option) {
   const plans = ["Arcade", "Advanced", "Pro"];
   const period = isMonthly ? "Monthly" : "Yearly";
   const prices = isMonthly ? [9, 12, 15] : [90, 120, 150];
-  document.querySelector(".selection-name").innerHTML = `${
-    plans[option % 3]
-  } (${period})`;
-  document.querySelector(".selection-price").innerHTML = `$${
-    prices[option % 3]
-  }/${isMonthly ? "mo" : "yr"}`;
+  document.querySelector(".selection-name").innerHTML = `${plans[option % 3]
+    } (${period})`;
+  document.querySelector(".selection-price").innerHTML = `$${prices[option % 3]
+    }/${isMonthly ? "mo" : "yr"}`;
 }
 
 function checkOptions() {
@@ -204,9 +200,8 @@ function checkPrice(plan, option) {
 
 function priceShow() {
   let total = priceDetails.reduce((acc, val) => acc + val, 0);
-  document.querySelector(".price").innerHTML = `&dollar;${total}/${
-    isMonthly ? "mo" : "yr"
-  }`;
+  document.querySelector(".price").innerHTML = `&dollar;${total}/${isMonthly ? "mo" : "yr"
+    }`;
 }
 
 // ----- CONFIRMATION
